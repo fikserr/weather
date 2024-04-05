@@ -88,6 +88,14 @@
         justify-content: space-between;
         border-bottom: 1px solid rgb(255, 255, 255);
     }
+    & button{
+        background: transparent;
+        border: none;
+        font-size: 28px;
+        color: white;
+        cursor: pointer;
+        padding: 5px;
+    }
     & input{
         color: rgba(255, 255, 255, 0.7);
         font-family: Roboto;
@@ -99,10 +107,7 @@
         border: none;
         outline: none;
     }
-    &__right-img{
-        width: 28px;
-        height: 28px;
-    }
+  
 
     &__right-details{
         padding: 40px 0 80px;

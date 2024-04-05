@@ -1,14 +1,23 @@
 import { useContext } from 'react';
+import { Context } from '../context/Context';
 import logo from '../img/logo.svg';
-import mdsearch from '../img/search.svg';
 import { BsFillCloudsFill } from "react-icons/bs";
 import { CiTempHigh } from "react-icons/ci";
 import { MdOutlineWaterDrop } from "react-icons/md";
 import { PiWind } from "react-icons/pi";
-import { Context } from '../context/Context';
+import { IoSearch } from "react-icons/io5";
+
 
 function Header() {
-    const {search,setSearch,getData} = useContext(Context)
+    const {search,setSearch,getData,data} = useContext(Context)
+    const current = data.current;
+    const currentUnixTimeMilliseconds = current?.dt * 1000; 
+    const currentDate = new Date(currentUnixTimeMilliseconds); 
+    const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', };
+    const formattedDate = currentDate.toLocaleString('en-US', options);
+    
+    console.log(formattedDate)
+
   return (
     <div className="header">
         <div className="container">
@@ -16,10 +25,10 @@ function Header() {
                     <div className="header__left ">
                         <img src={logo} alt="" className='header__left-img'/>
                         <div className="header__left-bottom">
-                            <h1 className="header__left-degree">16°</h1>
+                            <h1 className="header__left-degree">{Math.round(current?.temp)}°</h1>
                             <div className="header__left-info">
-                                <h3 className="header__left-city">London</h3>
-                                <p className="header__left-day">06:09 - Monday, 9 Sep ‘23</p>
+                                <h3 className="header__left-city">Сегодня</h3>
+                                <p className="header__left-day">{formattedDate}</p>
                             </div>
                             <p className='header__left-weather'><BsFillCloudsFill /></p>
                         </div>
@@ -28,11 +37,12 @@ function Header() {
                     <form className="header__right">
                         <div className="header__right-search">
                             <input 
-                            type="text"  
-                            placeholder='Search Location...'
+                            type="text" 
+                            placeholder='Search...'
                             value={search}
-                            onChange={(e)=>setSearch(e.target.value)} />
-                            <img src={mdsearch} alt="" className='header__right-img'  onClick={getData}/>
+                            onChange={(e)=>setSearch(e.target.value)} 
+                            />
+                            <button  onClick={getData}><IoSearch /></button>
                            
                         </div>
                         <div className="header__right-details">
@@ -40,22 +50,22 @@ function Header() {
 
                                 <div className="header__right-box">
                                     <p className="header__right-temp">Temp</p>
-                                    <p className="header__right-info">19°</p>
+                                    <p className="header__right-info">{Math.round(current?.temp)}°</p>
                                     <p className="header__right-icon"><CiTempHigh /></p>
                                 </div>
                                 <div className="header__right-box">
                                     <p className="header__right-temp">Humadity</p>
-                                    <p className="header__right-info">58%</p>
+                                    <p className="header__right-info">{Math.round(current?.humidity)}%</p>
                                     <p className="header__right-icon"><MdOutlineWaterDrop /></p>
                                 </div>
                                 <div className="header__right-box">
                                     <p className="header__right-temp">Cloudy</p>
-                                    <p className="header__right-info">86%</p>
+                                    <p className="header__right-info">{Math.round(current?.clouds)}%</p>
                                     <p className="header__right-icon"><BsFillCloudsFill /></p>
                                 </div>
                                 <div className="header__right-box">
                                     <p className="header__right-temp">Wind</p>
-                                    <p className="header__right-info">5km/h</p>
+                                    <p className="header__right-info">{Math.round(current?.wind_speed)}km/h</p>
                                     <p className="header__right-icon"><PiWind /></p>
                                 </div>
                         </div>
