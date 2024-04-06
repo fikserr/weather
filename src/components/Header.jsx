@@ -15,9 +15,19 @@ function Header() {
     const currentDate = new Date(currentUnixTimeMilliseconds); 
     const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', };
     const formattedDate = currentDate.toLocaleString('en-US', options);
+    console.log(current.temp);
+    if (current.clouds >= 30 && current.humidity <= 40) {
+        document.documentElement.dataset.theme = "cloudy"
+    }else if (current.humidity >= 40 &&  current.clouds >= 30) {
+        document.documentElement.dataset.theme = "rainy"
+    }else if (current.humidity <= 30 || current.clouds <= 30 && current.temp >= 10) {
+        document.documentElement.dataset.theme = "sunny"
+    }else if (current.humidity >= 30 && current.clouds >= 30 && current.temp >= -10) {
+        document.documentElement.dataset.theme = "winter"
+    }else if (current.humidity >= 30 || current.clouds >= 30 && current.wind_speed >= 15) {
+        document.documentElement.dataset.theme = "wind"
+    }
     
-    console.log(formattedDate)
-
   return (
     <div className="header">
         <div className="container">
@@ -37,6 +47,7 @@ function Header() {
                     <form className="header__right">
                         <div className="header__right-search">
                             <input 
+                            id='input'
                             type="text" 
                             placeholder='Search...'
                             value={search}

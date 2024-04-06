@@ -1,12 +1,17 @@
+import { useContext } from "react"
 import Header from "./components/Header"
-import ContextProvider from "./context/Context"
+import { Context } from "./context/Context"
+import Loader from "./components/Loader"
+
 
 
 function App() {
+  const {data} = useContext(Context)
+  if (data.length <= 0 ) return <Loader/>
   return (
-    <ContextProvider>
+    <>
       <Header/>
-    </ContextProvider>
+    </>
   )
 }
 
