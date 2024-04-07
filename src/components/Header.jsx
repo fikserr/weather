@@ -6,33 +6,35 @@ import { CiTempHigh } from "react-icons/ci";
 import { MdOutlineWaterDrop } from "react-icons/md";
 import { PiWind } from "react-icons/pi";
 import { IoSearch } from "react-icons/io5";
+import Card from './Card';
+
 
 
 function Header() {
     const {search,setSearch,getData,data} = useContext(Context)
     const current = data.current;
+    const dailyData = data.daily
     const currentUnixTimeMilliseconds = current?.dt * 1000; 
     const currentDate = new Date(currentUnixTimeMilliseconds); 
     const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', };
     const formattedDate = currentDate.toLocaleString('en-US', options);
-    console.log(current.temp);
     if (current.clouds >= 30 && current.humidity <= 40) {
         document.documentElement.dataset.theme = "cloudy"
-    }else if (current.humidity >= 40 &&  current.clouds >= 30) {
+    }else if (current.humidity >= 40 &&  current.clouds >= 30 && current.temp >= 10) {
         document.documentElement.dataset.theme = "rainy"
     }else if (current.humidity <= 30 || current.clouds <= 30 && current.temp >= 10) {
         document.documentElement.dataset.theme = "sunny"
-    }else if (current.humidity >= 30 && current.clouds >= 30 && current.temp >= -10) {
+    }else if (current.humidity >= 30 && current.clouds >= 30 && current.temp <= 0) {
         document.documentElement.dataset.theme = "winter"
-    }else if (current.humidity >= 30 || current.clouds >= 30 && current.wind_speed >= 15) {
+    }else if (  current.wind_speed >= 15 && current.temp >= 10) {
         document.documentElement.dataset.theme = "wind"
     }
-    
+
   return (
     <div className="header">
         <div className="container">
             <div className="header__all">
-                    <div className="header__left ">
+                    <div className="header__left">
                         <img src={logo} alt="" className='header__left-img'/>
                         <div className="header__left-bottom">
                             <h1 className="header__left-degree">{Math.round(current?.temp)}°</h1>
@@ -40,11 +42,11 @@ function Header() {
                                 <h3 className="header__left-city">Сегодня</h3>
                                 <p className="header__left-day">{formattedDate}</p>
                             </div>
-                            <p className='header__left-weather'><BsFillCloudsFill /></p>
+                            <img src={` https://openweathermap.org/img/wn/${current?.weather[0].icon}@2x.png`} alt={current.weather[0].description} className='header__left-weather'/>
                         </div>
                     </div>
 
-                    <form className="header__right">
+                    <div className="header__right ">
                         <div className="header__right-search">
                             <input 
                             id='input'
@@ -80,7 +82,16 @@ function Header() {
                                     <p className="header__right-icon"><PiWind /></p>
                                 </div>
                         </div>
-                    </form>
+
+                            {
+                                dailyData.slice(0,8).map((day)=>(
+                                    <Card key={dailyData.dt} dailyData={day}/>
+                                ))
+                            }
+                        
+
+
+                    </div>
             </div>
                 
 

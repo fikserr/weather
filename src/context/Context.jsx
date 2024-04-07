@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react"
 export const  Context = createContext()
 
 function ContextProvider({children}) {
-  const [search,setSearch] = useState('Barrow')
+  const [search,setSearch] = useState('Kokand')
   const [data,setData] = useState([])
     function getData() {
       fetch(`${import.meta.env.VITE_WEATHER_API}/geo/1.0/direct?q=${search}&appid=${import.meta.env.VITE_WEATHER_KEY}`)

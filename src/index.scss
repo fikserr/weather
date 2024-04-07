@@ -37,6 +37,7 @@
     background-size: cover;
     height: 100vh;
     position: relative;
+    
     &__all{
         display: flex;
         justify-content: space-between;
@@ -54,7 +55,12 @@
         display: flex;
         align-items:center;
         gap: 15px;
+        backdrop-filter: blur(19px);    
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 20px;
+        padding: 5px;
     }
+ 
     &__left-degree{
         color: rgb(255, 255, 255);
         font-family: Roboto;
@@ -62,10 +68,9 @@
         font-weight: 400;
         line-height: 168px;
         text-align: left;
+        text-shadow: 0 0 15px #141414;
     }
-    &__left-info{
-        height: 93px;
-    }
+  
     &__left-city{
         color: rgb(255, 255, 255);
         font-family: Roboto;
@@ -73,6 +78,7 @@
         font-weight: 400;
         line-height: 70px;
         text-align: left;
+        text-shadow: 0 0 15px #141414;
     }
     &__left-day{
         color: rgb(255, 255, 255);
@@ -82,17 +88,19 @@
         line-height: 21px;
         text-align: left;
         padding-top: 5px;
+        text-shadow: 0 0 15px #141414;
     }
     &__left-weather{
-        font-size: 100px;
-        color: white;
+        width: 150px;
+        height: 150px;
+
    
     }
     &__right{
         width: 526px;
-        height: 100vh;
+       
         border-left: 5px solid rgba(255, 255, 255, 0.14);
-        backdrop-filter: blur(19px);
+        backdrop-filter: blur(19px);    
         background: rgba(255, 255, 255, 0.04);
         position: absolute;
         right: 0;
@@ -123,12 +131,14 @@
         background:transparent;
         border: none;
         outline: none;
+        text-shadow: 0 0 15px #141414;
     }
   
 
     &__right-details{
         padding: 40px 0 80px;
         border-bottom: 1px solid rgb(255, 255, 255);
+        margin-bottom: 50px;
     }
     &__right-title{
         color: rgb(255, 255, 255);
@@ -138,6 +148,7 @@
         line-height: 21px;
         text-align: left;
         padding-bottom: 50px;
+        text-shadow: 0 0 15px #141414;
     }
 
     &__right-box{
@@ -153,6 +164,7 @@
         line-height: 21px;
         text-align: left;
         width: 300px;
+        text-shadow: 0 0 15px #141414;
     }
     &__right-info, &__right-icon{
         color: rgb(255, 255, 255);
@@ -162,11 +174,50 @@
         font-weight: 400;
         line-height: 21px;
         text-align: left;
+        text-shadow: 0 0 15px #141414;
     }
   
 
 }
+.card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(255, 255, 255);   
+    &__left{
+        display: flex;
+        align-items: center;
+        gap: 41px;
+    }
+    &__week-title{
+        color: rgb(255, 255, 255);
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 21px;
+        text-align: left;
+        text-shadow: 0 0 15px #141414;
+    }
+    &__week-weather{
+        color: rgba(255, 255, 255, 0.7);
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 21px;
+        text-align: left;
+        text-shadow: 0 0 15px #141414;
+    }
 
+    &__temp{
+        color: rgba(255, 255, 255, 0.7);
+        font-family: Roboto;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 28px;
+        text-align: right;
+        text-shadow: 0 0 15px #141414;
+    }
+}
 
 
 
@@ -215,3 +266,134 @@
       transform: rotate(360deg);
     }
   } 
+
+  @media screen and (max-width:800px) {
+   
+    .container{
+        width: 100%;
+        margin: 0 auto;
+        padding: 0  20px ;
+    }
+
+    .header{
+        width: 100%;
+        height: 100vh;
+        
+
+        &__all{
+            display: flex;
+            flex-direction: column; 
+
+        }
+        &__left{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            gap: 102px;
+        }
+        &__left-img{
+            width: 42px;
+        }
+        &__left-degree{
+            color: rgb(255, 255, 255);
+            font-family: Roboto;
+            font-size: 64px;
+            font-weight: 400;
+            line-height: 75px;
+            letter-spacing: -8%;
+            text-align: left;
+        }
+     
+        &__left-city{
+            color: rgb(255, 255, 255);
+            font-family: Roboto;
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 35px;
+            text-align: left;
+        }
+        &__left-day{
+            color: rgb(255, 255, 255);
+            font-family: Roboto;
+            font-size: 10px;
+            font-weight: 400;
+            line-height: 12px;
+            text-align: left;
+        }
+        &__left-weather{
+            width: 100px;
+            height: 100px;
+        }
+        &__right{
+            width: 100%;
+            height: 70vh;
+            position: absolute;
+            top: 247px;
+            overflow: auto;
+            border: none;
+            margin-top: 50px;
+            & input{
+                color: rgba(255, 255, 255, 0.7);
+                font-family: Roboto;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 14px;
+                text-align: left;
+            }
+
+            & button{
+                font-size: 12px;
+                padding: 5px;
+            }
+        }
+        &__right-details{
+            padding: 20px 0 30px;
+            margin-bottom: 25px;
+        }
+
+        &__right-search{
+            padding: 5px 0;
+        }
+
+        &__right-title{
+            color: rgb(255, 255, 255);
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16px;
+            text-align: center;
+        }
+
+
+        &__right-temp{
+            color: rgba(255, 255, 255, 0.7);
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16px;
+            text-align: left;
+        }
+        &__right-info, &__right-icon{
+            color: rgb(255, 255, 255);
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16px;
+            text-align: left;
+        }
+
+        .card{
+         &__left-img{
+            width: 80px;
+         }
+         &__week-title,&__week-weather,&__temp{
+            color: rgb(255, 255, 255);
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16px;
+            text-align: left;
+        }
+        }
+    }
+  }
