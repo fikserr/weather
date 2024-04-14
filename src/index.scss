@@ -98,13 +98,13 @@
     }
     &__right{
         width: 526px;
-       
+        height: 100vh;
         border-left: 5px solid rgba(255, 255, 255, 0.14);
         backdrop-filter: blur(19px);    
         background: rgba(255, 255, 255, 0.04);
         position: absolute;
         right: 0;
-        overflow: auto;
+        overflow:auto;
         padding: 40px 35px 85px;
     }
     &__right-search{
@@ -132,6 +132,7 @@
         border: none;
         outline: none;
         text-shadow: 0 0 15px #141414;
+        
     }
   
 
